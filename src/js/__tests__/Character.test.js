@@ -37,9 +37,7 @@ test('test this.damage(points)', () => {
     attack: 40,
     defence: 10,
   };
-  if (gamerCharacter.health > 0) {
-    gamerCharacter.damage(40);
-  }
+  gamerCharacter.damage(40);
 
   expect(gamerCharacter).toEqual(result);
 });
@@ -63,4 +61,11 @@ test('проерка ошибки на жизнь = 0 при this.levelUp()', ()
   gamerCharacter.health = 0;
 
   expect(() => gamerCharacter.levelUp()).toThrow('Нельзя повысить левел умершего.(');
+});
+
+test('проерка ошибки на жизнь = 0 при this.damage(points)', () => {
+  const user = new Character('user', 'Swordsman');
+  user.health = 0;
+  user.damage(25);
+  expect(user.health).toBe(0);
 });
